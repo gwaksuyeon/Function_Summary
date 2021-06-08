@@ -1,10 +1,11 @@
+// https://github.com/effectussoftware/react-custom-roulette/blob/master/src/components/WheelCanvas/index.tsx
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Wheel } from "react-custom-roulette";
 
 import { SvgPin } from "assets/svgs";
 
-const RouletteLibrary: React.FC = () => {
+const Roulette: React.FC = () => {
   const [isProgress, setIsProgress] = useState<boolean>(false);
   const [mustSpin, setMustSpin] = useState<boolean>(false);
   const [prizeNumber, setPrizeNumber] = useState<number>(0);
@@ -91,7 +92,7 @@ const RouletteLibrary: React.FC = () => {
 
   return (
     <Container>
-      <Title>라이브러리 룰렛</Title>
+      <Title>룰렛</Title>
       <RouletteLayout>
         <PinLayout>
           <SvgPin />
@@ -213,4 +214,4 @@ const Button = styled.div`
   z-index: 10;
 `;
 
-export default RouletteLibrary;
+export default Roulette;
