@@ -7,4 +7,5 @@ export const ROUTE_ROOT = {
   INFINITY_PAGING: '/infinite/paging',
   ROLES: '/roles',
   EDITOR: '/editor',
+  ORDER: '/order'
 }
