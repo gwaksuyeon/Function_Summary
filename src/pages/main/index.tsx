@@ -18,6 +18,8 @@ const Main: React.FC = () => {
         <Menu title={"접속권한"} link={ROUTE_ROOT.ROLES} />
         <Menu title={"에디터"} link={ROUTE_ROOT.EDITOR} />
         <Menu title={"순서변경"} link={ROUTE_ROOT.ORDER} />
+        <Menu title={"CSV"} link={ROUTE_ROOT.ORDER} />
+        <Menu title={"Chart"} link={ROUTE_ROOT.ORDER} />
       </Contents>
     </Container>
   );
