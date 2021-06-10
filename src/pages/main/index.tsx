@@ -12,7 +12,7 @@ const Main: React.FC = () => {
       <Contents>
         <Menu title={"룰렛"} link={ROUTE_ROOT.ROULETTE} />
         <Menu title={"공유하기"} link={ROUTE_ROOT.SHARE} />
-        <Menu title={"페이징"} link={ROUTE_ROOT.PAGINATION} />
+        <Menu title={"테이블"} link={ROUTE_ROOT.PAGINATION} />
         <Menu title={"무한스크롤"} link={ROUTE_ROOT.INFINITY_SCROLL_PAGING} />
         <Menu title={"무한페이징"} link={ROUTE_ROOT.INFINITY_PAGING} />
         <Menu title={"접속권한"} link={ROUTE_ROOT.ROLES} />
@@ -20,6 +20,8 @@ const Main: React.FC = () => {
         <Menu title={"순서변경"} link={ROUTE_ROOT.ORDER} />
         <Menu title={"CSV"} link={ROUTE_ROOT.ORDER} />
         <Menu title={"Chart"} link={ROUTE_ROOT.ORDER} />
+        <Menu title={"팝업공지"} link={ROUTE_ROOT.ORDER} />
+        <Menu title={"상품옵션"} link={ROUTE_ROOT.ORDER} />
       </Contents>
     </Container>
   );
