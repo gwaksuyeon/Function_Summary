@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import styled from "styled-components";
 import loadable from "@loadable/component";
 
+import {useIntersectionObserver} from './hooks';
 import { Ellipsis } from "style/mixin";
 import DATA_JSON from "./data.json";
 
@@ -9,85 +10,28 @@ const LazyImage = loadable(() => import("components/common/LazyImage"));
 
 const InfiniteScroll: React.FC = () => {
   const [data, setData] = useState<any>([]);
-  const target = useRef<any>(null);
+  const [page, setPage] = useState<number>(0);
+  const ref = useRef<any>(null);
+  const LIMIT_COUNT = 8;
+
+  const isBottomVisible =  useIntersectionObserver(ref, {threshold: 1}, false);
 
   const onRead = () => {
-    setData(DATA_JSON);
-  };
-
-  const createObserver = () => {
-    let options = {
-      root: null,
-      rootMargin: "0px 0px 20px 0px",
-      threshold: 0,
-    };
-
-    let observer = new IntersectionObserver(onChceckIntersect, options);
-
-    console.log(target.current);
-    let targetRef: any = target.current;
-    observer.observe(targetRef);
-  };
-
-  const onChceckIntersect = (entries: any, observer: any) => {
-    entries.forEach((entry: any) => {
-      if (entry.isIntersecting) {
-        onAddList();
-      }
-    });
-  };
-
-  const onAddList = () => {
-    setData(
-      data.concat([
-        {
-          no: 11,
-          title: "제목11",
-          contents:
-            "내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다",
-          imageUrl: "http://placehold.it/300x300/1877f2/aae&text=test",
-        },
-        {
-          no: 12,
-          title: "제목12",
-          contents:
-            "내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다",
-          imageUrl: "http://placehold.it/300x300/fef01b/aae&text=test",
-        },
-        {
-          no: 13,
-          title: "제목13",
-          contents:
-            "내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다",
-          imageUrl: "http://placehold.it/300x300/1ea1f1/aae&text=test",
-        },
-        {
-          no: 14,
-          title: "제목14",
-          contents:
-            "내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다",
-          imageUrl: "http://placehold.it/300x300/fef01b/e5e5e5&text=test",
-        },
-        {
-          no: 15,
-          title: "제목15",
-          contents:
-            "내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다",
-          imageUrl: "http://placehold.it/300x300/2DB400/aae&text=test",
-        },
-      ])
-    );
+      setData(data.concat(DATA_JSON.slice(page * LIMIT_COUNT, page*LIMIT_COUNT + LIMIT_COUNT)));
   };
 
   useEffect(() => {
-    onRead();
-    createObserver();
-  }, []);
+    if(isBottomVisible) {
+      setPage(page + 1);
+      onRead();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isBottomVisible])
 
   return (
     <Container>
       {data.map((obj: any, inx: number) => (
-        <ContentsLayout key={`contents-${inx}`} ref={target}>
+        <ContentsLayout key={`contents-${inx}`}>
           <ImageLayout>
             <LazyImage src={obj.imageUrl} alt={"img"} />
           </ImageLayout>
@@ -95,6 +39,7 @@ const InfiniteScroll: React.FC = () => {
           <Contents>{obj.contents}</Contents>
         </ContentsLayout>
       ))}
+      <div ref={ref} style={{width: '100%', height: '60px'}}></div>
     </Container>
   );
 };
@@ -102,9 +47,10 @@ const InfiniteScroll: React.FC = () => {
 const Container = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  gap: 20px 32px;
   width: 100%;
   min-height: 100%;
-  padding: 60px;
+  padding: 60px 60px 0 60px;
 `;
 
 const ContentsLayout = styled.div``;
