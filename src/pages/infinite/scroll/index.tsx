@@ -2,9 +2,9 @@ import React, { useRef, useState, useEffect } from "react";
 import styled from "styled-components";
 import loadable from "@loadable/component";
 
-import {useIntersectionObserver} from './hooks';
+import {useIntersectionObserver} from 'pages/infinite/hooks';
 import { Ellipsis } from "style/mixin";
-import DATA_JSON from "./data.json";
+import DATA_JSON from "pages/infinite/data.json";
 
 const LazyImage = loadable(() => import("components/common/LazyImage"));
 
