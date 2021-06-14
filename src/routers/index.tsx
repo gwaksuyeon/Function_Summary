@@ -9,6 +9,7 @@ const Roulette = loadable(() => import("pages/roulette"));
 const Share = loadable(() => import("pages/share"));
 const Pagination = loadable(() => import("pages/pagination"));
 const InfiniteScroll = loadable(() => import("pages/infinite/scroll"));
+const InfiniteButton = loadable(() => import("pages/infinite/button"));
 
 const Root: React.FC = () => {
   return (
@@ -22,6 +23,11 @@ const Root: React.FC = () => {
           path={ROUTE_ROOT.INFINITY_SCROLL_PAGING}
           exact
           component={InfiniteScroll}
+        />
+        <Route
+          path={ROUTE_ROOT.INFINITY_PAGING}
+          exact
+          component={InfiniteButton}
         />
       </Switch>
     </BrowserRouter>

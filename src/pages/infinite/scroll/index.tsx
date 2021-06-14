@@ -2,31 +2,45 @@ import React, { useRef, useState, useEffect } from "react";
 import styled from "styled-components";
 import loadable from "@loadable/component";
 
-import {useIntersectionObserver} from 'pages/infinite/hooks';
 import { Ellipsis } from "style/mixin";
 import DATA_JSON from "pages/infinite/data.json";
 
 const LazyImage = loadable(() => import("components/common/LazyImage"));
 
 const InfiniteScroll: React.FC = () => {
+  const LIMIT_COUNT = 8;
   const [data, setData] = useState<any>([]);
   const [page, setPage] = useState<number>(0);
-  const ref = useRef<any>(null);
-  const LIMIT_COUNT = 8;
-
-  const isBottomVisible =  useIntersectionObserver(ref, {threshold: 1}, false);
+  const [loading, setLoading] = useState<boolean>(false);
+  const pageEndRef = useRef<any>(null);
 
   const onRead = () => {
-      setData(data.concat(DATA_JSON.slice(page * LIMIT_COUNT, page*LIMIT_COUNT + LIMIT_COUNT)));
+    setData(
+      data.concat(
+        DATA_JSON.slice(page * LIMIT_COUNT, page * LIMIT_COUNT + LIMIT_COUNT)
+      )
+    );
+    setLoading(true);
   };
 
   useEffect(() => {
-    if(isBottomVisible) {
-      setPage(page + 1);
-      onRead();
-    }
+    onRead();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isBottomVisible])
+  }, [page]);
+
+  useEffect(() => {
+    if (loading) {
+      const observer = new IntersectionObserver(
+        (entries: any) => {
+          if (entries[0].isIntersecting) {
+            setPage((prev: React.SetStateAction<number>) => Number(prev) + 1);
+          }
+        },
+        { threshold: 1 }
+      );
+      observer.observe(pageEndRef.current);
+    }
+  }, [loading]);
 
   return (
     <Container>
@@ -39,7 +53,7 @@ const InfiniteScroll: React.FC = () => {
           <Contents>{obj.contents}</Contents>
         </ContentsLayout>
       ))}
-      <div ref={ref} style={{width: '100%', height: '60px'}}></div>
+      <div ref={pageEndRef} style={{ width: "100%", height: "60px" }}></div>
     </Container>
   );
 };
