@@ -9,3 +9,9 @@ export const ROUTE_ROOT = {
   EDITOR: '/editor',
   ORDER: '/order'
 }
+
+export const ROLES_TYPE = {
+  MASTER: '마스터관리자',
+  ADMIN: '관리자', 
+  CS_ADMIN: 'CS담당자'
+}

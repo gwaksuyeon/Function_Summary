@@ -10,6 +10,7 @@ const Share = loadable(() => import("pages/share"));
 const Pagination = loadable(() => import("pages/pagination"));
 const InfiniteScroll = loadable(() => import("pages/infinite/scroll"));
 const InfiniteButton = loadable(() => import("pages/infinite/button"));
+const Roles = loadable(() => import("pages/roles"));
 
 const Root: React.FC = () => {
   return (
@@ -29,6 +30,7 @@ const Root: React.FC = () => {
           exact
           component={InfiniteButton}
         />
+        <Route path={ROUTE_ROOT.ROLES} exact component={Roles} />
       </Switch>
     </BrowserRouter>
   );
