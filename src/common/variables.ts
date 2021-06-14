@@ -10,7 +10,7 @@ export const ROUTE_ROOT = {
   ORDER: '/order'
 }
 
-export const ROLES_TYPE = {
+export const ROLES_TYPE: any = {
   MASTER: '마스터관리자',
   ADMIN: '관리자', 
   CS_ADMIN: 'CS담당자'
