@@ -21,7 +21,7 @@ const Table: React.FC<Props> = ({ isColumn, data }) => {
         <TableRow>
             <NumberLayout>{data.no}</NumberLayout>
             <TitleLayout>{data.title}</TitleLayout>
-            <ContentsLayout>{data.contents}</ContentsLayout>
+            <ContentsLayout><p>{data.contents}</p></ContentsLayout>
             <DateLayout>
                 {moment(data.inDt).format('YYYY-MM-DD HH:mm:ss')}
             </DateLayout>
@@ -32,6 +32,7 @@ const Table: React.FC<Props> = ({ isColumn, data }) => {
 const TableRow = styled.div`
     display: flex;
     align-items: center;
+    min-height: 30px;
 
     &:hover {
         background: #fafafa;
@@ -44,6 +45,7 @@ const TableRow = styled.div`
 const TableData = styled.div`
     display: flex;
     align-items: center;
+    height: 100%;
     padding: 4px;
 
     & ~ & {
@@ -70,7 +72,9 @@ const TitleLayout = styled(TableData)`
 
 const ContentsLayout = styled(TableData)`
     flex: 1;
-    ${Ellipsis(1)}
+    p {
+        ${Ellipsis(1)}
+    }
 `;
 
 const DateLayout = styled(TableData)`
