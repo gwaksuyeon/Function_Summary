@@ -7,7 +7,11 @@ export const ROUTE_ROOT = {
   INFINITY_PAGING: '/infinite/paging',
   ROLES: '/roles',
   EDITOR: '/editor',
-  REORDER: '/reorder'
+  REORDER: '/reorder',
+  CSV: '/csv',
+  CHART: '/chart',
+  POPUP_NOTICE: '/popupNotice',
+  OPTION: '/option',
 }
 
 export const ROLES_TYPE: any = {
