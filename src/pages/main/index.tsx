@@ -20,11 +20,11 @@ const Main: React.FC = () => {
                 <Menu title={'무한페이징'} link={ROUTE_ROOT.INFINITY_PAGING} />
                 <Menu title={'접속권한'} link={ROUTE_ROOT.ROLES} />
                 <Menu title={'에디터'} link={ROUTE_ROOT.EDITOR} />
-                <Menu title={'순서변경'} link={ROUTE_ROOT.ORDER} />
-                <Menu title={'CSV'} link={ROUTE_ROOT.ORDER} />
-                <Menu title={'Chart'} link={ROUTE_ROOT.ORDER} />
-                <Menu title={'팝업공지'} link={ROUTE_ROOT.ORDER} />
-                <Menu title={'상품옵션'} link={ROUTE_ROOT.ORDER} />
+                <Menu title={'순서변경'} link={ROUTE_ROOT.REORDER} />
+                <Menu title={'CSV'} link={ROUTE_ROOT.REORDER} />
+                <Menu title={'Chart'} link={ROUTE_ROOT.REORDER} />
+                <Menu title={'팝업공지'} link={ROUTE_ROOT.REORDER} />
+                <Menu title={'상품옵션'} link={ROUTE_ROOT.REORDER} />
             </Contents>
         </Container>
     );

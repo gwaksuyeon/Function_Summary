@@ -12,6 +12,7 @@ const InfiniteScroll = loadable(() => import('pages/infinite/scroll'));
 const InfiniteButton = loadable(() => import('pages/infinite/button'));
 const Roles = loadable(() => import('pages/roles'));
 const Editor = loadable(() => import('pages/editor'));
+const Reorder = loadable(() => import('pages/reorder'));
 
 const Root: React.FC = () => {
     return (
@@ -37,6 +38,7 @@ const Root: React.FC = () => {
                 />
                 <Route path={ROUTE_ROOT.ROLES} exact component={Roles} />
                 <Route path={ROUTE_ROOT.EDITOR} exact component={Editor} />
+                <Route path={ROUTE_ROOT.REORDER} exact component={Reorder} />
             </Switch>
         </BrowserRouter>
     );
