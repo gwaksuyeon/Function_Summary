@@ -15,6 +15,7 @@ const Editor = loadable(() => import('pages/editor'));
 const Reorder = loadable(() => import('pages/reorder'));
 const CSV = loadable(() => import('pages/csv'));
 const Chart = loadable(() => import('pages/chart'));
+const PopupNotice = loadable(() => import('pages/popupNotice'));
 
 const Root: React.FC = () => {
     return (
@@ -43,6 +44,11 @@ const Root: React.FC = () => {
                 <Route path={ROUTE_ROOT.REORDER} exact component={Reorder} />
                 <Route path={ROUTE_ROOT.CSV} exact component={CSV} />
                 <Route path={ROUTE_ROOT.CHART} exact component={Chart} />
+                <Route
+                    path={ROUTE_ROOT.POPUP_NOTICE}
+                    exact
+                    component={PopupNotice}
+                />
             </Switch>
         </BrowserRouter>
     );
