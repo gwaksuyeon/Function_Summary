@@ -1,0 +1,14 @@
+[
+  {
+    "id": "pc",
+    "label": "pc",
+    "value": 65,
+    "color": "hsl(207, 70%, 50%)"
+  },
+  {
+    "id": "mobile",
+    "label": "mobile",
+    "value": 297,
+    "color": "hsl(247, 70%, 50%)"
+  }
+]

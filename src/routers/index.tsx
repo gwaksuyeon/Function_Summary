@@ -14,6 +14,7 @@ const Roles = loadable(() => import('pages/roles'));
 const Editor = loadable(() => import('pages/editor'));
 const Reorder = loadable(() => import('pages/reorder'));
 const CSV = loadable(() => import('pages/csv'));
+const Chart = loadable(() => import('pages/chart'));
 
 const Root: React.FC = () => {
     return (
@@ -41,6 +42,7 @@ const Root: React.FC = () => {
                 <Route path={ROUTE_ROOT.EDITOR} exact component={Editor} />
                 <Route path={ROUTE_ROOT.REORDER} exact component={Reorder} />
                 <Route path={ROUTE_ROOT.CSV} exact component={CSV} />
+                <Route path={ROUTE_ROOT.CHART} exact component={Chart} />
             </Switch>
         </BrowserRouter>
     );
