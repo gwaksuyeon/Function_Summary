@@ -11,7 +11,7 @@ export const ROUTE_ROOT = {
   CSV: '/csv',
   CHART: '/chart',
   POPUP_NOTICE: '/popupNotice',
-  OPTION: '/option',
+  GOODS_OPTION: '/goodsoption',
 }
 
 export const ROLES_TYPE: any = {

@@ -16,6 +16,7 @@ const Reorder = loadable(() => import('pages/reorder'));
 const CSV = loadable(() => import('pages/csv'));
 const Chart = loadable(() => import('pages/chart'));
 const PopupNotice = loadable(() => import('pages/popupNotice'));
+const GoodsOption = loadable(() => import('pages/goodsOption'));
 
 const Root: React.FC = () => {
     return (
@@ -48,6 +49,11 @@ const Root: React.FC = () => {
                     path={ROUTE_ROOT.POPUP_NOTICE}
                     exact
                     component={PopupNotice}
+                />
+                <Route
+                    path={ROUTE_ROOT.GOODS_OPTION}
+                    exact
+                    component={GoodsOption}
                 />
             </Switch>
         </BrowserRouter>

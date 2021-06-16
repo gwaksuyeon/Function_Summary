@@ -24,7 +24,7 @@ const Main: React.FC = () => {
                 <Menu title={'CSV'} link={ROUTE_ROOT.CSV} />
                 <Menu title={'Chart'} link={ROUTE_ROOT.CHART} />
                 <Menu title={'팝업공지'} link={ROUTE_ROOT.POPUP_NOTICE} />
-                <Menu title={'상품옵션'} link={ROUTE_ROOT.OPTION} />
+                <Menu title={'상품옵션'} link={ROUTE_ROOT.GOODS_OPTION} />
             </Contents>
         </Container>
     );
