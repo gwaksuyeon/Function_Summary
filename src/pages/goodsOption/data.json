@@ -1,0 +1,143 @@
+[{
+  "price": 5000,
+  "optionYn": "y",
+  "optionType": "combine",
+  "optionNameList": ["색상", "사이즈"],
+  "optionList": [
+    {
+      "no": 1,
+      "depth1": "검은색",
+      "depth2": "S",
+      "price": 0,
+      "stock": {
+        "no": 1,
+        "code": "A0001",
+        "name": "검은색 S",
+        "cnt": 500
+      }
+    },
+    {
+      "no": 2,
+      "depth1": "검은색",
+      "depth2": "M",
+      "price": 500,
+      "stock": {
+        "no": 2,
+        "code": "A0002",
+        "name": "검은색 M",
+        "cnt": 0
+      }
+      
+    },
+    {
+      "no": 3,
+      "depth1": "검은색",
+      "depth2": "L",
+      "price": 1000,
+      "stock": {
+        "no": 3,
+        "code": "A0003",
+        "name": "검은색 L",
+        "cnt": 500
+      }
+    },
+    {
+      "no": 4,
+      "depth1": "흰색",
+      "depth2": "S",
+      "price": 0,
+      "stock": {
+        "no": 4,
+        "code": "A0004",
+        "name": "흰색 S",
+        "cnt": 500
+      }
+    },
+    {
+      "no": 5,
+      "depth1": "흰색",
+      "depth2": "M",
+      "price": 500,
+      "stock": {
+        "no": 5,
+        "code": "A0005",
+        "name": "흰색 M",
+        "cnt": 0
+      }
+    },
+    {
+      "no": 6,
+      "depth1": "흰색",
+      "depth2": "L",
+      "price": 1000,
+      "stock": {
+        "no": 6,
+        "code": "A0006",
+        "name": "흰색 L",
+        "cnt": 500
+      }
+    }
+  ]
+}, {
+  "price": 5000,
+  "optionYn": "y",
+  "optionType": "separation",
+  "optionNameList": ["샴푸", "린스"],
+  "optionList": [
+    {
+      "no": 7,
+      "depth1": "샴푸",
+      "depth2": "500ml",
+      "price": 0,
+      "stock": {
+        "no": 7,
+        "code": "A0007",
+        "name": "샴푸 500ml",
+        "cnt": 500
+      }
+    },
+    {
+      "no": 8,
+      "depth1": "샴푸",
+      "depth2": "1000ml",
+      "price": 1000,
+      "stock": {
+        "no": 8,
+        "code": "A0008",
+        "name": "샴푸 1000ml",
+        "cnt": 0
+      }
+      
+    },
+    {
+      "no": 9,
+      "depth1": "린스",
+      "depth2": "500ml",
+      "price": 0,
+      "stock": {
+        "no": 9,
+        "code": "A0009",
+        "name": "린스 500ml",
+        "cnt": 500
+      }
+    },
+    {
+      "no": 10,
+      "depth1": "린스",
+      "depth2": "1000ml",
+      "price": 500,
+      "stock": {
+        "no":10,
+        "code": "A0010",
+        "name": "린스 1000ml",
+        "cnt": 0
+      }
+    }
+  ]
+}, {
+  "price": 5000,
+  "optionYn": "n",
+  "optionType": "combine",
+  "optionNameList": [],
+  "optionList": []
+}]

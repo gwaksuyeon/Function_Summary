@@ -1,32 +1,68 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import loadable from '@loadable/component';
+
+import { numberComma, toggleToBoolean } from 'common/function';
+import DATA_JSON from './data.json';
+
+const Combine = loadable(() => import('pages/goodsOption/Combine'));
+const Separation = loadable(() => import('pages/goodsOption/Separation'));
+const NoOption = loadable(() => import('pages/goodsOption/NoOption'));
 
 const GoodsOption: React.FC = () => {
+    const [data, setData] = useState<any>('');
+
+    const onRead = () => {
+        setData(DATA_JSON);
+    };
+
+    // 타이틀 읽기
+    const onReadTitle = (type: string, optionYn: string) => {
+        if (toggleToBoolean(optionYn)) {
+            if (type === 'combine') {
+                return '조합형 옵션';
+            }
+
+            if (type === 'separation') {
+                return '분리형 옵션';
+            }
+        } else {
+            return '비옵션';
+        }
+    };
+
+    useEffect(() => {
+        onRead();
+    }, []);
+
     return (
         <Container>
-            <CombineOptionLayout>
-                <Title>조합형 옵션</Title>
+            {data &&
+                data.map((obj: any, inx: number) => (
+                    <ContentsLayout key={`option-${inx}`}>
+                        <Title>
+                            {onReadTitle(obj.optionType, obj.optionYn)}
+                        </Title>
 
-                <PriceLayout>
-                    <PriceRows>상품가격: 5,000원</PriceRows>
-                </PriceLayout>
-            </CombineOptionLayout>
+                        <PriceLayout>
+                            <PriceRows>
+                                상품가격: {numberComma(obj.price)}원
+                            </PriceRows>
+                        </PriceLayout>
 
-            <SeparationOptionLayout>
-                <Title>분리형 옵션</Title>
-
-                <PriceLayout>
-                    <PriceRows>상품가격: 5,000원</PriceRows>
-                </PriceLayout>
-            </SeparationOptionLayout>
-
-            <NoOptionLayout>
-                <Title>비옵션</Title>
-
-                <PriceLayout>
-                    <PriceRows>상품가격: 5,000원</PriceRows>
-                </PriceLayout>
-            </NoOptionLayout>
+                        <OptionLayout>
+                            {toggleToBoolean(obj.optionYn) &&
+                            obj.optionType === 'combine' ? (
+                                <Combine data={obj} />
+                            ) : toggleToBoolean(obj.optionYn) &&
+                              obj.optionType === 'separation' ? (
+                                <Separation data={obj} />
+                            ) : (
+                                <NoOption data={obj} />
+                            )}
+                        </OptionLayout>
+                    </ContentsLayout>
+                ))}
         </Container>
     );
 };
@@ -41,7 +77,6 @@ const Container = styled.div`
 
     > div ~ div {
         border-left: 1px solid #e9edf1;
-        margin-left: 20px;
     }
 `;
 
@@ -54,15 +89,9 @@ const Title = styled.p`
 const ContentsLayout = styled.div`
     width: 300px;
     height: 600px;
-    padding: 4px;
+    padding: 10px;
     overflow-y: auto;
 `;
-
-const CombineOptionLayout = styled(ContentsLayout)``;
-
-const SeparationOptionLayout = styled(ContentsLayout)``;
-
-const NoOptionLayout = styled(ContentsLayout)``;
 
 const PriceLayout = styled.div`
     margin-bottom: 10px;
@@ -77,5 +106,7 @@ const PriceRows = styled.div`
         margin-top: 4px;
     }
 `;
+
+const OptionLayout = styled.div``;
 
 export default GoodsOption;
