@@ -1,14 +1,20 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import "./index.css";
-import Routes from "routers";
-import reportWebVitals from "./reportWebVitals";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import Routes from 'routers';
+import reportWebVitals from './reportWebVitals';
+import { Provider } from 'react-redux';
+import { enableES5 } from 'immer';
+
+import store from 'store';
+
+enableES5();
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Routes />
-  </React.StrictMode>,
-  document.getElementById("root")
+    <Provider store={store}>
+        <Routes />
+    </Provider>,
+    document.getElementById('root'),
 );
 
 // If you want to start measuring performance in your app, pass a function

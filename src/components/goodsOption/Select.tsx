@@ -5,28 +5,55 @@ import OutsideClickHandler from 'react-outside-click-handler';
 import { SvgArrow } from 'assets/svgs';
 
 interface Props {
-    selectName: string;
+    type: 'depth1' | 'depth2'; // 옵션 상단, 하단
+    optionType: string; // 옵션타입 (조합형 / 분리형)
+    placeholder: string; // 옵션명
+    selectedList: any[]; // 옵션 리스트
 }
-const Select: React.FC<Props> = ({ selectName }) => {
+const Select: React.FC<Props> = ({
+    type,
+    optionType,
+    placeholder,
+    selectedList,
+}) => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
+    const [selected, setSelected] = useState<string>('');
+
+    // 옵션 선택
+    const onClickOption = (option: string) => {
+        if (optionType === 'combine') {
+            setSelected(option);
+        } else {
+            setSelected(`${placeholder}: ${option}`);
+        }
+        setIsOpen(false);
+    };
 
     return (
         <Container>
-            <SelectedLayout onClick={() => setIsOpen(!isOpen)}>
-                <SelectedText>{selectName}</SelectedText>
-                <ArrowButton isOpen={isOpen}>
-                    <SvgArrow />
-                </ArrowButton>
-            </SelectedLayout>
+            <OutsideClickHandler onOutsideClick={() => setIsOpen(false)}>
+                <SelectedLayout onClick={() => setIsOpen(!isOpen)}>
+                    <SelectedText>
+                        {selected ? selected : placeholder}
+                    </SelectedText>
+                    <ArrowButton isOpen={isOpen}>
+                        <SvgArrow />
+                    </ArrowButton>
+                </SelectedLayout>
 
-            {isOpen && (
-                <OutsideClickHandler onOutsideClick={() => setIsOpen(false)}>
+                {isOpen && (
                     <OptionListLayout>
-                        <OptionLayout>500ml</OptionLayout>
-                        <OptionLayout>1000ml</OptionLayout>
+                        {selectedList.length > 0 &&
+                            selectedList.map((obj: any, inx: number) => (
+                                <OptionLayout
+                                    key={`option-${inx}`}
+                                    onClick={() => onClickOption(obj)}>
+                                    {obj}
+                                </OptionLayout>
+                            ))}
                     </OptionListLayout>
-                </OutsideClickHandler>
-            )}
+                )}
+            </OutsideClickHandler>
         </Container>
     );
 };
