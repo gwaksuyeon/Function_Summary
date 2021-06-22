@@ -17,6 +17,7 @@ const Combine: React.FC<Props> = ({ data }) => {
     const [selected2List, setSelected2List] = useState<any>([]);
 
     useEffect(() => {
+        // 첫번째 옵션 리스트 만들기
         if (data) {
             const resSelected1List = [
                 ...new Set(data.optionList.map((obj: any) => obj.depth1)),

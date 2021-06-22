@@ -1,35 +1,44 @@
-import { createAction, ActionType, createReducer } from 'typesafe-actions'
+import { createAction, ActionType, createReducer } from 'typesafe-actions';
 import produce from 'immer';
 
 // action types
-export const TEST = 'test/TEST';
-export const TEST_SUCCESS = 'test/TEST_SUCCESS';
+export const OPTION_CREATE = 'options/OPTION_CREATE';
 
 // actions
-export const test = createAction(TEST)<any>();
-export const testSuccess = createAction(TEST_SUCCESS)<any>();
+export const optionCreate = createAction(OPTION_CREATE)<any>();
 
 const actions = {
-  test,
-  testSuccess,
-}
+    optionCreate,
+};
 
 type Actions = ActionType<typeof actions>;
 
 interface State {
-  test: string;
+    combineOptionList: any[];
+    separationOptionList: any[];
 }
 
 // default state
 const initialState: State = {
-  test: 'test',
-}
+    combineOptionList: [],
+    separationOptionList: [],
+};
 
 const Reducer = createReducer<State, Actions>(initialState, {
-  [TEST_SUCCESS]: (state, action) => 
-    produce(state, (draft) => {
-      draft.test = 'test success';
-    })
-})
+    [OPTION_CREATE]: (state, action) =>
+        produce(state, (draft) => {
+            const { type, selectList } = action.payload;
+
+            if (type === 'combine') {
+                draft.combineOptionList =
+                    state.combineOptionList.concat(selectList);
+            }
+
+            if (type === 'separation') {
+                draft.separationOptionList =
+                    state.separationOptionList.concat(selectList);
+            }
+        }),
+});
 
 export default Reducer;
