@@ -1,9 +1,11 @@
-import { combineReducers } from 'redux'
+import { combineReducers } from 'redux';
 import test from './test';
+import options from './options';
 
 const rootReducer = combineReducers({
-  test,
-})
+    test,
+    options,
+});
 
 export default rootReducer;
 export type RootState = ReturnType<typeof rootReducer>;

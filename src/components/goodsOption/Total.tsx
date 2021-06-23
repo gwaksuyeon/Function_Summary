@@ -3,13 +3,57 @@ import styled from 'styled-components';
 
 import { numberComma } from 'common/function';
 
-const Total: React.FC = () => {
+interface Props {
+    data: any;
+    optionType: string;
+    price: number;
+}
+
+const Total: React.FC<Props> = ({ data, optionType, price }) => {
+    const onCalcTotalCount = () => {
+        let count = 0;
+        data.forEach((obj: any) => {
+            count += obj.buyCnt;
+        });
+
+        return count;
+    };
+
+    const onCalcTotalPrice = () => {
+        let totalPrice = 0;
+        if (optionType === 'combine') {
+            data.forEach((obj: any) => {
+                totalPrice += obj.buyCnt * (price + obj.selected2.price);
+            });
+
+            return numberComma(totalPrice);
+        }
+
+        if (optionType === 'separation') {
+            data.forEach((obj: any) => {
+                totalPrice +=
+                    obj.buyCnt *
+                    (price + obj.selected1.price + obj.selected2.price);
+            });
+
+            return numberComma(totalPrice);
+        }
+
+        if (optionType === 'noOption') {
+            data.forEach((obj: any) => {
+                totalPrice += obj.buyCnt * price;
+            });
+
+            return numberComma(totalPrice);
+        }
+    };
+
     return (
         <Container>
             <TotalAmountLayout>
-                <TotalCount>{numberComma(9999)}개 상품 금액</TotalCount>
+                <TotalCount>{onCalcTotalCount()}개 상품 금액</TotalCount>
                 <TotalPrice>
-                    {numberComma(33000)}
+                    {onCalcTotalPrice()}
                     <span>원</span>
                 </TotalPrice>
             </TotalAmountLayout>

@@ -45,6 +45,7 @@ const GoodsOption: React.FC = () => {
                         </Title>
 
                         <PriceLayout>
+                            <GoodsName>상품명: {obj.goodsName}</GoodsName>
                             <PriceRows>
                                 상품가격: {numberComma(obj.price)}원
                             </PriceRows>
@@ -95,6 +96,11 @@ const ContentsLayout = styled.div`
 
 const PriceLayout = styled.div`
     margin-bottom: 10px;
+`;
+
+const GoodsName = styled.p`
+    font-size: 16px;
+    margin-bottom: 4px;
 `;
 
 const PriceRows = styled.div`

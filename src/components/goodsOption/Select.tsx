@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import OutsideClickHandler from 'react-outside-click-handler';
 
+import { numberComma } from 'common/function';
 import { SvgArrow } from 'assets/svgs';
 
 interface Props {
@@ -9,24 +10,78 @@ interface Props {
     optionType: string; // 옵션타입 (조합형 / 분리형)
     placeholder: string; // 옵션명
     selectedList: any[]; // 옵션 리스트
+    currentSelectList: any; // 현재 선택된 리스트
+    onSelectedList: any;
 }
 const Select: React.FC<Props> = ({
     type,
     optionType,
     placeholder,
     selectedList,
+    currentSelectList,
+    onSelectedList,
 }) => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [selected, setSelected] = useState<string>('');
 
     // 옵션 선택
-    const onClickOption = (option: string) => {
+    const onClickOption = (option: any) => {
         if (optionType === 'combine') {
-            setSelected(option);
-        } else {
-            setSelected(`${placeholder}: ${option}`);
+            if (type === 'depth1') {
+                setSelected(option);
+                onSelectedList({
+                    selected1: option,
+                });
+            }
+
+            if (type === 'depth2') {
+                setSelected(option.depth2);
+                onSelectedList({
+                    selected1: null,
+                    selected2: option,
+                });
+            }
         }
+
+        if (optionType === 'separation') {
+            setSelected(`${placeholder}: ${option.depth2}`);
+
+            if (type === 'depth1') {
+                onSelectedList({
+                    selected1: option,
+                });
+            }
+
+            if (type === 'depth2') {
+                onSelectedList({
+                    ...currentSelectList,
+                    selected2: option,
+                });
+            }
+        }
+
         setIsOpen(false);
+    };
+
+    // 옵션 리스트 텍스트
+    const onOptionText = (option: any) => {
+        if (optionType === 'combine') {
+            if (type === 'depth1') {
+                return option;
+            }
+
+            if (type === 'depth2') {
+                return `${option.depth2} ${
+                    option.price > 0 ? `(+${numberComma(option.price)}원)` : ''
+                }`;
+            }
+        }
+
+        if (optionType === 'separation') {
+            return `${option.depth2} ${
+                option.price > 0 ? `(+${numberComma(option.price)}원)` : ''
+            }`;
+        }
     };
 
     return (
@@ -48,7 +103,7 @@ const Select: React.FC<Props> = ({
                                 <OptionLayout
                                     key={`option-${inx}`}
                                     onClick={() => onClickOption(obj)}>
-                                    {obj}
+                                    {onOptionText(obj)}
                                 </OptionLayout>
                             ))}
                     </OptionListLayout>
