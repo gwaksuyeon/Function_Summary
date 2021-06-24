@@ -1,46 +1,55 @@
-# Getting Started with Create React App
+## 기능 정리
+- 직접 만들어 본 기능 구현
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+1. 룰렛
+  - react-custom-roulette 라이브러리 사용 및 커스텀
+  - 룰렛 버튼을 누를 때 미리 당첨결과를 서버에서 정한 후, 룰렛 돌림
 
-## Available Scripts
+2. 공유하기
+  - kakao, facebook, twitter, kakaostory, naver, url복사
 
-In the project directory, you can run:
+3. 테이블
+  - 리스트 pagination 구현
+  - 한 페이지당 몇 개 보일지, 페이지네이션 개수는 몇 개 보일지 설정 가능
 
-### `yarn start`
+4. 무한스크롤
+  - scroll값을 계산하여 사용하기엔 너무 많은 호출 필요
+  - IntersectionObserver로 감시하여 호출
+  - LazyImage로 이미지 최적화
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+5. 무한페이징
+  - 더보기 버튼을 클릭하여 다음 데이터 호출
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+6. 접속권한
+  - 체크박스로 권한 설정
 
-### `yarn test`
+7. 에디터
+  - toast-ui/react-editor 사용
+  - 미리보기 기능 추가
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+8. 순서변경
+  - react-beautiful-dnd 사용
+  - json파일을 지원해줌, 기능 많음
+  - 가로 / 세로 순서 변경 가능
 
-### `yarn build`
+9. CSV
+  - react-csv 사용
+  - json데이터를 가공하여 csv파일로 다운
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+10. Chart
+  - @nivo/pie, @nivo/line 사용
+  - 커스텀 용이
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+11. 팝업공지
+  - localStorage를 사용해 현재시간이 보지않겠다는 시간 이전이면 보이지 않도록 설정
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+12. 상품옵션
+  - 조합형, 분리형, 비옵션으로 상품 옵션 선택 및 수량, 금액 계산
+  - 조함형
+    - 색상 선택 + 사이즈 선택하여 하나의 상품선택
+  - 분리형
+    - 개별 상품 선택 + 개별 상품 선택하여 두가지의 상품으로 세트 생성
+    - 옵션을 1개만 설정하면 1개의 옵션만 선택
+  - 비옵션
+    - 옵션 없이 선택
 
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
