@@ -1,5 +1,6 @@
 ## 기능 정리
 - 직접 만들어 본 기능 구현
+- https://gwaksuyeon.github.io/Function_Summary/
 
 1. 룰렛
   - react-custom-roulette 라이브러리 사용 및 커스텀
