@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import loadable from '@loadable/component';
+import { useDispatch } from 'react-redux';
 
+import { optionReset } from 'reducers/options';
 import { numberComma, toggleToBoolean } from 'common/function';
 import DATA_JSON from './data.json';
 
@@ -10,6 +12,8 @@ const Separation = loadable(() => import('pages/goodsOption/Separation'));
 const NoOption = loadable(() => import('pages/goodsOption/NoOption'));
 
 const GoodsOption: React.FC = () => {
+    const dispatch = useDispatch();
+
     const [data, setData] = useState<any>('');
 
     const onRead = () => {
@@ -32,7 +36,9 @@ const GoodsOption: React.FC = () => {
     };
 
     useEffect(() => {
+        dispatch(optionReset());
         onRead();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (

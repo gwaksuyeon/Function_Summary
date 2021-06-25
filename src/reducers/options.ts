@@ -6,18 +6,21 @@ export const OPTION_CREATE = 'options/OPTION_CREATE';
 export const OPTION_DELETE = 'options/OPTION_DELETE';
 export const AMOUNT_PLUS = 'options/AMOUNT_PLUS';
 export const AMOUNT_MINUS = 'options/AMOUNT_MINUS';
+export const OPTION_RESET = 'options/OPTION_RESET';
 
 // actions
 export const optionCreate = createAction(OPTION_CREATE)<any>();
 export const optionDelete = createAction(OPTION_DELETE)<any>();
 export const amountPlus = createAction(AMOUNT_PLUS)<any>();
 export const amountMinus = createAction(AMOUNT_MINUS)<any>();
+export const optionReset = createAction(OPTION_RESET)();
 
 const actions = {
     optionCreate,
     optionDelete,
     amountPlus,
     amountMinus,
+    optionReset,
 };
 
 type Actions = ActionType<typeof actions>;
@@ -135,6 +138,13 @@ const Reducer = createReducer<State, Actions>(initialState, {
                         ? 1
                         : state.noOptionList[0].buyCnt - 1;
             }
+        }),
+
+    [OPTION_RESET]: (state, action) =>
+        produce(state, (draft) => {
+            draft.combineOptionList = [];
+            draft.separationOptionList = [];
+            draft.noOptionList = [];
         }),
 });
 
