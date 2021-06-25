@@ -20,7 +20,7 @@ const GoodsOption = loadable(() => import('pages/goodsOption'));
 
 const Root: React.FC = () => {
     return (
-        <BrowserRouter>
+        <BrowserRouter basename={process.env.PUBLIC_URL}>
             <Switch>
                 <Route path={ROUTE_ROOT.MAIN} exact component={Main} />
                 <Route path={ROUTE_ROOT.ROULETTE} exact component={Roulette} />
