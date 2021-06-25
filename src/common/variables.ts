@@ -1,5 +1,5 @@
 export const ROUTE_ROOT = {
-    GIT_HUB: process.env.REACT_APP_PUBLIC_URL,
+    GIT_HUB: '/Function_Summary',
     MAIN: '/',
     ROULETTE: '/roulette',
     SHARE: '/share',
